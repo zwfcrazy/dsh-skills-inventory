@@ -1,0 +1,4 @@
+# dsh-skills-inventory：设置页「Skills」页签（列出工作区/全局技能 + 详情）。
+- insert:
+    - id: skills-inventory
+      name: 'dsh-skills-inventory'
