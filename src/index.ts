@@ -6,7 +6,7 @@ export const inject = ['connection', 'skills', 'agents', 'webServer'] as const
 export function apply(ctx: Context): void {
   const skills = ctx.get('skills') as any
   const agents = ctx.get('agents') as any
-  const connection = ctx.get('connection') as any
+  const connection = (ctx as any).connection as any
   if (skills === undefined || connection === undefined) return
 
   const SOURCE_LABEL: Record<string, string> = {
@@ -112,7 +112,7 @@ export function apply(ctx: Context): void {
     return out
   }
 
-  ctx.effect(() => connection.rpc.handle('/skills-inventory', async (endpoint: string, payload: unknown) => {
+  ctx.effect(() => (ctx.root as any).connection.rpc.handle('/skills-inventory', async (endpoint: string, payload: unknown) => {
     if (endpoint === 'list') return { ok: true as const, value: await handleList(payload) }
     if (endpoint === 'get') return { ok: true as const, value: await handleGet(payload) }
     return {

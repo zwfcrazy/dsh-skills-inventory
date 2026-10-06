@@ -1,4 +1,8 @@
 # dsh-skills-inventory：设置页「Skills」页签（列出工作区/全局技能 + 详情）。
+# 0.2（2026-10-06）：inject 必须在挂载行声明——loader 只把 entry.options.inject
+# 并入 fiber.inject（Inject.resolve(fiber.entry.options.inject, fiber.inject)），
+# 模块导出的 inject 在 entry 挂载路径不生效（0.1 cordis 4.0.1 不查，属行为级断裂）。
 - insert:
     - id: skills-inventory
       name: 'dsh-skills-inventory'
+      inject: ['connection', 'skills', 'agents', 'webServer']
