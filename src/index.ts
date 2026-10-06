@@ -1,7 +1,7 @@
 import type { Context } from '@deepseek-ai/cordis'
 
 export const name = 'skills-inventory'
-export const inject = ['connection', 'skills', 'agents'] as const
+export const inject = ['connection', 'skills', 'agents', 'webServer'] as const
 
 export function apply(ctx: Context): void {
   const skills = ctx.get('skills') as any
